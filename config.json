@@ -1,12 +1,18 @@
 {
   "username": "flyingdutchmanfurniture",
   "_how_this_works": "Keywords are set PER REEL, the same way Julia sets them in LinkDM. The same word can mean different things on different days, so nothing is assumed. Her twice-daily sweep reads LinkDM and writes each new reel's entry into 'posts' below. A reel with no entry is left completely alone.",
-  "_pilot": "While pilot_post_ids has anything in it, ONLY those posts are touched. Empty it to let the script work on every reel that has a mapping.",
-  "pilot_post_ids": [
-    "17958265818230224"
-  ],
+  "_pilot": "Empty, so every reel that has a mapping is worked on. While pilot_post_ids has anything in it, ONLY those posts are touched - put an id back in it to test on one reel.",
+  "pilot_post_ids": [],
   "posts_to_check": 15,
   "reply_template": "Here you go: {link} See you in the garage! Julia",
+  "_threads_reply_note": "How a LinkDM message becomes a Threads reply. LinkDM allows 900 characters; Threads allows 500 and counts every URL in full. So the message is cut, never truncated: keep the free thing the reel promised, keep the product link, keep the guide, keep 'See you in the garage! Julia'. Drop the two catch-all links (the bare stan.store profile and the lnk.bio page) - they are in her bio anyway. Swap any long URL for its short form in 'short_links' below. A PDF attached in LinkDM cannot be sent on Threads at all, so the link to it has to carry the whole job.",
+  "short_links": {
+    "https://stan.store/flyingdutchmanfurniture/p/a-practical-guide-to-furniture-refinishing-pdf": "https://tinyurl.com/FDFGuide"
+  },
+  "_drop_links": [
+    "https://stan.store/flyingdutchmanfurniture",
+    "https://lnk.bio/flyingdutchmanfurniture"
+  ],
   "posts": {
     "17958265818230224": {
       "added": "2026-09-19",
