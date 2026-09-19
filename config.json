@@ -4,8 +4,8 @@
   "_pilot": "Empty, so every reel that has a mapping is worked on. While pilot_post_ids has anything in it, ONLY those posts are touched - put an id back in it to test on one reel.",
   "pilot_post_ids": [],
   "posts_to_check": 15,
-  "reply_template": "Here you go: {link} See you in the garage! Julia",
-  "_threads_reply_note": "How a LinkDM message becomes a Threads reply. LinkDM allows 900 characters; Threads allows 500 and counts every URL in full. So the message is cut, never truncated. Keep: the thing the reel promised (the free download, or the product link if there is no download), then the guide, then 'See you in the garage! Julia'. Drop: the bare stan.store profile, the lnk.bio hub, and the 1:1 finish-plan link - Julia decided 19 Sep 2026 to keep Threads replies to the same two-link shape as the approved grit reply, even when there is room to spare, so there is one obvious click. Swap any long URL for its short form in 'short_links'. A PDF attached in LinkDM cannot be sent on Threads at all, so the link has to carry the whole job.",
+  "reply_template": "Here you go: {link}",
+  "_threads_reply_note": "How a LinkDM message becomes a Threads reply. LinkDM allows 900 characters; Threads allows 500 and counts every URL in full. So the message is cut, never truncated. Keep: the thing the reel promised (the free download, or the product link if there is no download), then the guide, and nothing after it - Julia asked on 19 Sep 2026 to stop signing off with \u0027See you in the garage\u0027 and her name, so replies end on the last link. Drop: the bare stan.store profile, the lnk.bio hub, and the 1:1 finish-plan link - Julia decided 19 Sep 2026 to keep Threads replies to the same two-link shape as the approved grit reply, even when there is room to spare, so there is one obvious click. Swap any long URL for its short form in 'short_links'. A PDF attached in LinkDM cannot be sent on Threads at all, so the link has to carry the whole job.",
   "short_links": {
     "https://stan.store/flyingdutchmanfurniture/p/a-practical-guide-to-furniture-refinishing-pdf": "https://tinyurl.com/FDFGuide"
   },
@@ -27,7 +27,7 @@
             "girt",
             "stril"
           ],
-          "template": "Here you go, the grit cheat sheet:\nhttps://tinyurl.com/FDFGritCheatSheet\n\nAnd the sanding kit I actually use:\nhttps://amzlink.to/az0febgOXNotD\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia"
+          "template": "Here you go, the grit cheat sheet:\nhttps://tinyurl.com/FDFGritCheatSheet\n\nAnd the sanding kit I actually use:\nhttps://amzlink.to/az0febgOXNotD\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide"
         }
       }
     },
@@ -49,7 +49,7 @@
             "spray",
             "linkdm"
           ],
-          "template": "Here's everything I used on this one:\nhttps://amzlink.to/az03cW6sBYXc0\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia"
+          "template": "Here's everything I used on this one:\nhttps://amzlink.to/az03cW6sBYXc0\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide"
         }
       }
     },
@@ -58,7 +58,7 @@
       "keywords": {
         "chip": {
           "link": "https://amzlink.to/az0kQnpfLXHWK",
-          "template": "Here are the touch-up products I use for tiny chips and scratches:\nhttps://amzlink.to/az0kQnpfLXHWK\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia",
+          "template": "Here are the touch-up products I use for tiny chips and scratches:\nhttps://amzlink.to/az0kQnpfLXHWK\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide",
           "variants": [
             "chips",
             "link",
@@ -82,7 +82,7 @@
       "keywords": {
         "order": {
           "link": "https://tinyurl.com/BestOrdertoPaintFDF",
-          "template": "Here's your free painting order reference:\nhttps://tinyurl.com/BestOrdertoPaintFDF\n\nFurniture + cabinet paints and supplies:\nhttps://amzlink.to/az0d6RS6lFXhu\n\nMy paint spraying essentials:\nhttps://amzlink.to/az08wcMP2ZqOt\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia",
+          "template": "Here's your free painting order reference:\nhttps://tinyurl.com/BestOrdertoPaintFDF\n\nFurniture + cabinet paints and supplies:\nhttps://amzlink.to/az0d6RS6lFXhu\n\nMy paint spraying essentials:\nhttps://amzlink.to/az08wcMP2ZqOt\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide",
           "variants": [
             "orders",
             "link",
@@ -106,7 +106,7 @@
       "keywords": {
         "wood": {
           "link": "https://amzlink.to/az0cXktiLq0CH",
-          "template": "There are two different ways to lighten wood:\n\nOxalic acid (water stains, dark marks):\nhttps://amzlink.to/az0cXktiLq0CH\n\nTwo-part wood bleach (dramatically lighter):\nhttps://amzlink.to/az03eqz6cVkvH\n\nNeutralize with baking soda afterward:\nhttps://amzlink.to/az0SJeUQzJ9BS\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia",
+          "template": "There are two different ways to lighten wood:\n\nOxalic acid (water stains, dark marks):\nhttps://amzlink.to/az0cXktiLq0CH\n\nTwo-part wood bleach (dramatically lighter):\nhttps://amzlink.to/az03eqz6cVkvH\n\nNeutralize with baking soda afterward:\nhttps://amzlink.to/az0SJeUQzJ9BS\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide",
           "variants": [
             "woods",
             "light",
@@ -133,7 +133,7 @@
       "keywords": {
         "info": {
           "link": "https://amzlink.to/az0vVtRn926k6",
-          "template": "Here's the exact paint remover I use:\n\nQuart:\nhttps://amzlink.to/az0vVtRn926k6\n\nGallon:\nhttps://amzlink.to/az0dsT0a3tYWz\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia",
+          "template": "Here's the exact paint remover I use:\n\nQuart:\nhttps://amzlink.to/az0vVtRn926k6\n\nGallon:\nhttps://amzlink.to/az0dsT0a3tYWz\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide",
           "variants": [
             "link",
             "shop",
@@ -155,7 +155,7 @@
       "keywords": {
         "stain": {
           "link": "https://amzlink.to/az0JUDkoZ6uAa",
-          "template": "Here's what made it wipe right off:\nhttps://amzlink.to/az0JUDkoZ6uAa\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia",
+          "template": "Here's what made it wipe right off:\nhttps://amzlink.to/az0JUDkoZ6uAa\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide",
           "variants": [
             "stains",
             "link",
@@ -179,7 +179,7 @@
       "keywords": {
         "links": {
           "link": "https://amzlink.to/az0eGVFZTZSQU",
-          "template": "Here are the sealers from the reel:\nhttps://amzlink.to/az0eGVFZTZSQU\n\nAnd the free sealer cheat sheet:\nhttps://tinyurl.com/FDFTopcoats\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia",
+          "template": "Here are the sealers from the reel:\nhttps://amzlink.to/az0eGVFZTZSQU\n\nAnd the free sealer cheat sheet:\nhttps://tinyurl.com/FDFTopcoats\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide",
           "variants": [
             "link",
             "shop",
@@ -201,7 +201,7 @@
       "keywords": {
         "corner": {
           "link": "https://amzlink.to/az0BpmfCLGwcy",
-          "template": "Here's what I use to rebuild broken corners and edges:\nhttps://amzlink.to/az0BpmfCLGwcy\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia",
+          "template": "Here's what I use to rebuild broken corners and edges:\nhttps://amzlink.to/az0BpmfCLGwcy\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide",
           "variants": [
             "corners",
             "croner",
@@ -226,7 +226,7 @@
       "keywords": {
         "sander": {
           "link": "https://tinyurl.com/Sanding101FDF",
-          "template": "Here you go, the Sanding 101 guide:\nhttps://tinyurl.com/Sanding101FDF\n\nAnd my sanding essentials list:\nhttps://amzlink.to/az0febgOXNotD\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia",
+          "template": "Here you go, the Sanding 101 guide:\nhttps://tinyurl.com/Sanding101FDF\n\nAnd my sanding essentials list:\nhttps://amzlink.to/az0febgOXNotD\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide",
           "variants": [
             "sanders",
             "sand",
@@ -252,7 +252,7 @@
       "keywords": {
         "spray": {
           "link": "https://tinyurl.com/BeginnerSprayGuide",
-          "template": "Here's my free beginner spraying guide:\nhttps://tinyurl.com/BeginnerSprayGuide\n\nAnd my spraying essentials list:\nhttps://amzlink.to/az0AnwYA2njVf\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia",
+          "template": "Here's my free beginner spraying guide:\nhttps://tinyurl.com/BeginnerSprayGuide\n\nAnd my spraying essentials list:\nhttps://amzlink.to/az0AnwYA2njVf\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide",
           "variants": [
             "link",
             "shop",
@@ -274,7 +274,7 @@
       "keywords": {
         "primer": {
           "link": "https://amzlink.to/az0PRu7QdtS6o",
-          "template": "Here's the primer list I use instead of BIN:\nhttps://amzlink.to/az0PRu7QdtS6o\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia",
+          "template": "Here's the primer list I use instead of BIN:\nhttps://amzlink.to/az0PRu7QdtS6o\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide",
           "variants": [
             "primers",
             "priers",
@@ -299,7 +299,7 @@
       "keywords": {
         "putty": {
           "link": "https://amzlink.to/az0BPqjZuEPh9",
-          "template": "Here's the putty I switched to:\nhttps://amzlink.to/az0BPqjZuEPh9\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia",
+          "template": "Here's the putty I switched to:\nhttps://amzlink.to/az0BPqjZuEPh9\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide",
           "variants": [
             "link",
             "shop",
@@ -322,7 +322,7 @@
       "keywords": {
         "tool": {
           "link": "https://amzlink.to/az0AF7WbRrfSs",
-          "template": "Here's the scraper I use for curves and detailed areas:\nhttps://amzlink.to/az0AF7WbRrfSs\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia",
+          "template": "Here's the scraper I use for curves and detailed areas:\nhttps://amzlink.to/az0AF7WbRrfSs\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide",
           "variants": [
             "tools",
             "link",
@@ -344,7 +344,7 @@
       "keywords": {
         "strip": {
           "link": "https://amzlink.to/az0vVtRn926k6",
-          "template": "Here's the stripper that worked this fast:\n\nQuart:\nhttps://amzlink.to/az0vVtRn926k6\n\nGallon:\nhttps://amzlink.to/az0dsT0a3tYWz\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia",
+          "template": "Here's the stripper that worked this fast:\n\nQuart:\nhttps://amzlink.to/az0vVtRn926k6\n\nGallon:\nhttps://amzlink.to/az0dsT0a3tYWz\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide",
           "variants": [
             "stripper",
             "strippers",
