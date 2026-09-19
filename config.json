@@ -5,13 +5,14 @@
   "pilot_post_ids": [],
   "posts_to_check": 15,
   "reply_template": "Here you go: {link} See you in the garage! Julia",
-  "_threads_reply_note": "How a LinkDM message becomes a Threads reply. LinkDM allows 900 characters; Threads allows 500 and counts every URL in full. So the message is cut, never truncated: keep the free thing the reel promised, keep the product link, keep the guide, keep 'See you in the garage! Julia'. Drop the two catch-all links (the bare stan.store profile and the lnk.bio page) - they are in her bio anyway. Swap any long URL for its short form in 'short_links' below. A PDF attached in LinkDM cannot be sent on Threads at all, so the link to it has to carry the whole job.",
+  "_threads_reply_note": "How a LinkDM message becomes a Threads reply. LinkDM allows 900 characters; Threads allows 500 and counts every URL in full. So the message is cut, never truncated. Keep: the thing the reel promised (the free download, or the product link if there is no download), then the guide, then 'See you in the garage! Julia'. Drop: the bare stan.store profile, the lnk.bio hub, and the 1:1 finish-plan link - Julia decided 19 Sep 2026 to keep Threads replies to the same two-link shape as the approved grit reply, even when there is room to spare, so there is one obvious click. Swap any long URL for its short form in 'short_links'. A PDF attached in LinkDM cannot be sent on Threads at all, so the link has to carry the whole job.",
   "short_links": {
     "https://stan.store/flyingdutchmanfurniture/p/a-practical-guide-to-furniture-refinishing-pdf": "https://tinyurl.com/FDFGuide"
   },
   "_drop_links": [
     "https://stan.store/flyingdutchmanfurniture",
-    "https://lnk.bio/flyingdutchmanfurniture"
+    "https://lnk.bio/flyingdutchmanfurniture",
+    "https://stan.store/flyingdutchmanfurniture/p/furniture-project-review--finish-plan"
   ],
   "posts": {
     "17958265818230224": {
@@ -27,6 +28,28 @@
             "stril"
           ],
           "template": "Here you go, the grit cheat sheet:\nhttps://tinyurl.com/FDFGritCheatSheet\n\nAnd the sanding kit I actually use:\nhttps://amzlink.to/az0febgOXNotD\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia"
+        }
+      }
+    },
+    "18201050053340479": {
+      "added": "2026-09-19",
+      "reel": "You really do not need a garage full of expensive tools to start flipping furniture",
+      "keywords": {
+        "tools": {
+          "link": "https://amzlink.to/az03cW6sBYXc0",
+          "variants": [
+            "tool",
+            "link",
+            "links",
+            "shop",
+            "buy",
+            "guide",
+            "products",
+            "info",
+            "spray",
+            "linkdm"
+          ],
+          "template": "Here's everything I used on this one:\nhttps://amzlink.to/az03cW6sBYXc0\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia"
         }
       }
     }
