@@ -1,15 +1,12 @@
 {
   "username": "flyingdutchmanfurniture",
-
   "_how_this_works": "Keywords are set PER REEL, the same way Julia sets them in LinkDM. The same word can mean different things on different days, so nothing is assumed. Her twice-daily sweep reads LinkDM and writes each new reel's entry into 'posts' below. A reel with no entry is left completely alone.",
-
   "_pilot": "While pilot_post_ids has anything in it, ONLY those posts are touched. Empty it to let the script work on every reel that has a mapping.",
-  "pilot_post_ids": ["17958265818230224"],
-
+  "pilot_post_ids": [
+    "17958265818230224"
+  ],
   "posts_to_check": 15,
-
   "reply_template": "Here you go: {link} See you in the garage! Julia",
-
   "posts": {
     "17958265818230224": {
       "added": "2026-09-19",
@@ -17,12 +14,18 @@
       "keywords": {
         "grit": {
           "link": "https://tinyurl.com/FDFGritCheatSheet",
-          "variants": ["grits", "gritt", "girt", "stril"]
+          "variants": [
+            "grits",
+            "gritt",
+            "girt",
+            "stril"
+          ],
+          "template": "Here you go, the grit cheat sheet:\nhttps://tinyurl.com/FDFGritCheatSheet\n\nAnd the sanding kit I actually use:\nhttps://amzlink.to/az0febgOXNotD\n\nThe whole process start to finish is in my guide:\nhttps://tinyurl.com/FDFGuide\n\nSee you in the garage!\nJulia"
         }
       }
     }
   },
-
   "_evergreen_note": "Only for offers whose link genuinely never changes. If there is any doubt, leave it out and let the per-reel mapping handle it. A keyword here is used ONLY when the reel has no entry of its own.",
-  "evergreen_keywords": {}
+  "evergreen_keywords": {},
+  "_template_note": "A reel can carry its own 'template' next to its keyword. When present it is sent verbatim, so a reel can have as many links and as much wording as fits. Threads allows 500 characters for a reply and counts full URLs, so the script refuses to send anything longer rather than truncating it."
 }
