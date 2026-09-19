@@ -190,6 +190,61 @@ def whoami(token: str) -> str:
 
 
 # --------------------------------------------------------------------------
+# Telling the outside world which reels still need a mapping
+# --------------------------------------------------------------------------
+
+def publish_unmapped(unmapped: list[dict]) -> None:
+    """
+    Write the reels that have no keyword mapping into the Actions run summary.
+
+    This is the handover point. The mapping for a reel can only come from
+    LinkDM, and LinkDM is a browser - no API, and a login that drops in
+    minutes. So a scheduled Claude run on Julia's Mac does that part: it reads
+    LinkDM, shortens the DM to fit Threads' 500 characters, and commits the
+    mapping back here.
+
+    That run needs to know WHICH reels are waiting, and the Threads id is the
+    only reliable name for a reel. But the Threads token lives in this repo's
+    secrets and should stay there. So rather than handing the token around,
+    the job that already has it writes the list into its run summary, which on
+    a public repo is readable by anyone with the URL and no login at all.
+
+    Outside Actions this is a no-op beyond the log.
+    """
+    path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not path:
+        return
+
+    lines = ["## Reels waiting for a mapping", ""]
+    if not unmapped:
+        lines += ["Nothing waiting - every recent reel has its keywords.", ""]
+    else:
+        lines += [
+            f"{len(unmapped)} reel(s) below have no entry in `config.json`, so "
+            "nobody commenting a keyword on them is getting an answer.",
+            "",
+            "| Threads id | Posted | Reel | Link |",
+            "| --- | --- | --- | --- |",
+        ]
+        for p in unmapped:
+            text = (p.get("text") or "").replace("\n", " ").replace("|", "/")
+            if len(text) > 80:
+                text = text[:77] + "..."
+            lines.append(
+                f"| `{p['id']}` | {(p.get('timestamp') or '')[:10]} | {text} | "
+                f"{p.get('permalink', '')} |"
+            )
+        lines.append("")
+
+    try:
+        with open(path, "a", encoding="utf-8") as fh:
+            fh.write("\n".join(lines) + "\n")
+    except OSError as exc:
+        # Never let a reporting problem stop replies going out.
+        log.warning("could not write the run summary: %s", exc)
+
+
+# --------------------------------------------------------------------------
 # Main
 # --------------------------------------------------------------------------
 
@@ -240,7 +295,8 @@ def main() -> int:
     if pilot:
         posts = [p for p in posts if p["id"] in pilot]
 
-    sent = skipped = unmapped = 0
+    sent = skipped = 0
+    unmapped: list[dict] = []
 
     for p in posts:
         # Which keywords does THIS reel use today? LinkDM is set up per reel,
@@ -253,7 +309,7 @@ def main() -> int:
         if not keywords:
             keywords = evergreen
         if not keywords:
-            unmapped += 1
+            unmapped.append(p)
             log.info("post %s has no keyword mapping yet - skipping (%s)",
                      p["id"], (p.get("text") or "")[:60].replace("\n", " "))
             continue
@@ -317,8 +373,10 @@ def main() -> int:
                 log.error("could not reply to @%s: %s", r.get("username"), exc)
                 skipped += 1
 
+    publish_unmapped(unmapped)
+
     log.info("done: %d replied, %d skipped, %d reels with no mapping yet, "
-             "%d reels checked", sent, skipped, unmapped, len(posts))
+             "%d reels checked", sent, skipped, len(unmapped), len(posts))
     return 0
 
 
