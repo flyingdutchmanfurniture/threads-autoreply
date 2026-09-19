@@ -1,0 +1,29 @@
+{
+  "username": "flyingdutchmanfurniture",
+
+  "_how_this_works": "Keywords are set PER REEL, the same way Julia sets them in LinkDM. The same word can mean different things on different days, so nothing is assumed. Her twice-daily sweep reads LinkDM and writes each new reel's entry into 'posts' below. A reel with no entry is left completely alone.",
+
+  "_pilot": "While pilot_post_ids has anything in it, ONLY those posts are touched. Empty it to let the script work on every reel that has a mapping.",
+  "pilot_post_ids": [],
+
+  "posts_to_check": 15,
+
+  "reply_template": "Here you go: {link} See you in the garage! Julia",
+
+  "posts": {
+    "_example": {
+      "note": "Threads post id -> what that reel's keyword means today. Written by the sweep, not by hand.",
+      "added": "2026-09-19",
+      "reel": "Sandpaper numbers make absolutely no sense...",
+      "keywords": {
+        "grit": {
+          "link": "https://tinyurl.com/FDFGritCheatSheet",
+          "variants": ["grits", "gritt", "girt", "stril"]
+        }
+      }
+    }
+  },
+
+  "_evergreen_note": "Only for offers whose link genuinely never changes. If there is any doubt, leave it out and let the per-reel mapping handle it. A keyword here is used ONLY when the reel has no entry of its own.",
+  "evergreen_keywords": {}
+}
