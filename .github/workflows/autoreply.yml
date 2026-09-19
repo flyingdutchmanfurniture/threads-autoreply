@@ -1,0 +1,46 @@
+name: Threads auto-reply
+
+on:
+  schedule:
+    # Every 5 minutes. GitHub runs these on a best-effort basis, so the real
+    # gap is sometimes 5 minutes and sometimes 15. That is fine for this job.
+    - cron: "*/5 * * * *"
+  workflow_dispatch:      # lets Julia run it by hand from the Actions tab
+
+concurrency:
+  group: threads-autoreply
+  cancel-in-progress: false
+
+jobs:
+  reply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Reply to keyword comments
+        env:
+          # No user id needed - the script asks the token who it belongs to.
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          # Set this repository variable to 1 to watch it run without sending.
+          THREADS_DRY_RUN: ${{ vars.THREADS_DRY_RUN }}
+        run: python autoreply.py
+
+  # Keeps the 60-day token alive. Runs weekly, well inside the window.
+  refresh:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Refresh token if it is getting old
+        env:
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: python refresh_token.py
