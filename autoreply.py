@@ -321,6 +321,8 @@ def main() -> int:
             continue
 
         answered = already_answered(replies, me)
+        log.info("post %s: %d replies read, %d already answered",
+                 p["id"], len(replies), len(answered))
 
         for r in replies:
             if (r.get("username") or "").lower() == me.lower():
