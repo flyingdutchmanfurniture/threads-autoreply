@@ -276,14 +276,31 @@ def main() -> int:
             if not keyword:
                 continue
 
-            link = keywords[keyword]["link"]
-            if not link:
-                log.warning("%s asked for %s but no link is configured - skipping",
+            entry_kw = keywords[keyword]
+            link = entry_kw.get("link", "")
+            # A reel can carry its own wording, because Julia's DM for a GRIT
+            # reel says different things from her DM for a STAIN reel, and some
+            # of them carry more than one link. When a reel has a template we
+            # send it verbatim; otherwise we fall back to the one-link default.
+            template = entry_kw.get("template")
+
+            if template:
+                text = template
+            elif link:
+                text = sign_off.format(link=link)
+            else:
+                log.warning("%s asked for %s but that reel has neither a "
+                            "template nor a link - skipping",
                             r.get("username"), keyword)
                 skipped += 1
                 continue
 
-            text = sign_off.format(link=link)
+            if len(text) > 500:
+                log.error("reply for %s is %d characters, over the Threads "
+                          "limit of 500 - skipping rather than sending a "
+                          "truncated mess", keyword, len(text))
+                skipped += 1
+                continue
 
             if dry_run:
                 log.info("WOULD REPLY to @%s (%s): %s", r.get("username"), keyword, text)
