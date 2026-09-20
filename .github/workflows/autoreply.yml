@@ -2,9 +2,13 @@ name: Threads auto-reply
 
 on:
   schedule:
-    # Every 5 minutes. GitHub runs these on a best-effort basis, so the real
-    # gap is sometimes 5 minutes and sometimes 15. That is fine for this job.
-    - cron: "*/5 * * * *"
+    # The reply sweep. GitHub runs these on a best-effort basis, so the real
+    # gap is sometimes 15 minutes and sometimes a little more. That is fine.
+    - cron: "*/15 * * * *"
+    # The token refresh. A long-lived token lasts 60 days and one call buys a
+    # fresh 60, so monthly is the least that is still safe - if a run fails we
+    # still have about a month of runway. 04:00 UTC on the 1st.
+    - cron: "0 4 1 * *"
   workflow_dispatch:      # lets Julia run it by hand from the Actions tab
 
 concurrency:
@@ -13,6 +17,8 @@ concurrency:
 
 jobs:
   reply:
+    # Every schedule except the monthly refresh one, plus manual runs.
+    if: github.event.schedule != '0 4 1 * *'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -30,16 +36,16 @@ jobs:
           THREADS_DRY_RUN: ${{ vars.THREADS_DRY_RUN }}
         run: python autoreply.py
 
-  # Keeps the 60-day token alive. Runs weekly, well inside the window.
+  # Keeps the 60-day token alive. Only fires on the monthly cron above.
   refresh:
-    if: github.event_name == 'schedule'
+    if: github.event.schedule == '0 4 1 * *'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Refresh token if it is getting old
+      - name: Refresh the token
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_PAT }}
