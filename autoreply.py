@@ -278,6 +278,7 @@ def main() -> int:
                  if not k.startswith("_")}
     me = cfg["username"]
     pilot = cfg.get("pilot_post_ids") or []
+    ignored = set(cfg.get("ignore_post_ids") or [])
     look_back = int(cfg.get("posts_to_check", 10))
     sign_off = cfg.get("reply_template", "Here you go: {link} See you in the garage! Julia")
 
@@ -294,6 +295,17 @@ def main() -> int:
 
     if pilot:
         posts = [p for p in posts if p["id"] in pilot]
+
+    # A repost of someone else's thread lands in this list too. It carries
+    # its own Threads id but no caption of its own, and its permalink points
+    # at the original author's post, so there is nothing to map and nothing
+    # that should ever be replied to underneath it.
+    if ignored:
+        before = len(posts)
+        posts = [p for p in posts if p["id"] not in ignored]
+        if before != len(posts):
+            log.info("ignoring %d post(s) listed in ignore_post_ids",
+                     before - len(posts))
 
     sent = skipped = 0
     unmapped: list[dict] = []
