@@ -3,6 +3,10 @@
   "_how_this_works": "Keywords are set PER REEL, the same way Julia sets them in LinkDM. The same word can mean different things on different days, so nothing is assumed. Her twice-daily sweep reads LinkDM and writes each new reel's entry into 'posts' below. A reel with no entry is left completely alone.",
   "_pilot": "Empty, so every reel that has a mapping is worked on. While pilot_post_ids has anything in it, ONLY those posts are touched - put an id back in it to test on one reel.",
   "pilot_post_ids": [],
+  "_ignore_note": "Reposts and anything else that should never be replied to or listed as waiting for a mapping. A repost carries its own Threads id but no caption of its own, and its permalink points at the original author's post, so there is nothing here to map.",
+  "ignore_post_ids": [
+    "18435638248198455"
+  ],
   "posts_to_check": 15,
   "reply_template": "Here you go: {link}",
   "_threads_reply_note": "How a LinkDM message becomes a Threads reply. LinkDM allows 900 characters; Threads allows 500 and counts every URL in full. So the message is cut, never truncated. Keep: the thing the reel promised (the free download, or the product link if there is no download), then the guide, and nothing after it - Julia asked on 19 Sep 2026 to stop signing off with \u0027See you in the garage\u0027 and her name, so replies end on the last link. Drop: the bare stan.store profile, the lnk.bio hub, and the 1:1 finish-plan link - Julia decided 19 Sep 2026 to keep Threads replies to the same two-link shape as the approved grit reply, even when there is room to spare, so there is one obvious click. Swap any long URL for its short form in 'short_links'. A PDF attached in LinkDM cannot be sent on Threads at all, so the link has to carry the whole job.",
