@@ -20,7 +20,7 @@ jobs:
     # Every schedule except the monthly refresh one, plus manual runs.
     if: github.event.schedule != '0 4 1 * *'
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
 
@@ -34,7 +34,7 @@ jobs:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           # Set this repository variable to 1 to watch it run without sending.
           THREADS_DRY_RUN: ${{ vars.THREADS_DRY_RUN }}
-        run: python autoreply.py
+        run: for i in 1 2 3 4; do true > $GITHUB_STEP_SUMMARY; python autoreply.py; if test $i -lt 4; then sleep 900; fi; done
 
   # Keeps the 60-day token alive. Only fires on the monthly cron above.
   refresh:
