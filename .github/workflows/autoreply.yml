@@ -6,20 +6,30 @@ on:
     # gap is sometimes 15 minutes and sometimes a little more. That is fine.
     - cron: "*/15 * * * *"
     # The token refresh. A long-lived token lasts 60 days and one call buys a
-    # fresh 60, so monthly is the least that is still safe - if a run fails we
-    # still have about a month of runway. 04:00 UTC on the 1st.
-    - cron: "0 4 1 * *"
-  workflow_dispatch:      # lets Julia run it by hand from the Actions tab
-
-concurrency:
-  group: threads-autoreply
-  cancel-in-progress: false
+    # fresh 60. Weekly - which is what refresh_token.py was always documented
+    # to do - so it would take eight misses in a row before the token is
+    # anywhere near expiry. 04:00 UTC on Sundays.
+    - cron: "0 4 * * 0"
+  workflow_dispatch: # lets Julia run it by hand from the Actions tab
+    inputs:
+      refresh_token:
+        description: "Refresh the Threads token instead of running a reply sweep"
+        type: boolean
+        default: false
 
 jobs:
   reply:
-    # Every schedule except the monthly refresh one, plus manual runs.
-    if: github.event.schedule != '0 4 1 * *'
+    # Every schedule except the token refresh one, plus manual runs that did
+    # not ask for a refresh.
+    if: github.event.schedule != '0 4 * * 0' && github.event.inputs.refresh_token != 'true'
     runs-on: ubuntu-latest
+    # The sweep serialises against itself and against nothing else. This used
+    # to sit at workflow level, which meant a 5-hour sweep held the group and
+    # the monthly refresh run queued behind it and was cancelled before it ever
+    # started - exactly what happened on 1 Nov 2026.
+    concurrency:
+      group: threads-autoreply-reply
+      cancel-in-progress: false
     timeout-minutes: 350
     permissions:
       contents: write
@@ -59,15 +69,38 @@ jobs:
             if test $i -lt 22; then sleep 900; fi
           done
 
-  # Keeps the 60-day token alive. Only fires on the monthly cron above.
+  # Keeps the 60-day token alive. Fires on the weekly cron above, or on a
+  # manual run with "refresh_token" ticked.
   refresh:
-    if: github.event.schedule == '0 4 1 * *'
+    if: github.event.schedule == '0 4 * * 0' || github.event.inputs.refresh_token == 'true'
     runs-on: ubuntu-latest
+    concurrency:
+      group: threads-autoreply-refresh
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      # refresh_token.py seals the new token with libsodium before writing it
+      # back as a secret. Without this it cannot save anything.
+      - name: Install pynacl
+        run: pip install pynacl
+
+      # Without GH_PAT the script refreshes the token, throws the new one away
+      # and still exits 0 - which is why this job looked green every time while
+      # saving nothing at all. Stop before that happens, and stop loudly.
+      - name: Check the new token can actually be saved
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          if [ -z "$GH_PAT" ]; then
+            echo "::error::GH_PAT is not set, so a refreshed token cannot be written back into THREADS_ACCESS_TOKEN. Add a fine-grained personal access token with Secrets: write on this repository as the GH_PAT secret."
+            exit 1
+          fi
+
       - name: Refresh the token
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
