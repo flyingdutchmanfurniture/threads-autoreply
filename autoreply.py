@@ -34,6 +34,7 @@ from pathlib import Path
 
 API = "https://graph.threads.net/v1.0"
 CONFIG_PATH = Path(__file__).with_name("config.json")
+WAITING_PATH = Path(__file__).with_name("waiting.json")
 
 log = logging.getLogger("threads-autoreply")
 
@@ -211,6 +212,34 @@ def publish_unmapped(unmapped: list[dict]) -> None:
 
     Outside Actions this is a no-op beyond the log.
     """
+    # The run summary above is only readable once a whole run finishes, and a
+    # run lasts hours. The mapping task needs to see a new reel within minutes,
+    # so the same list is written to waiting.json, which the workflow commits
+    # after every sweep.
+    try:
+        WAITING_PATH.write_text(
+            json.dumps(
+                {
+                    "generated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                    "waiting": [
+                        {
+                            "id": p.get("id"),
+                            "posted": (p.get("timestamp") or "")[:10],
+                            "text": (p.get("text") or "").replace("\n", " ")[:200],
+                            "permalink": p.get("permalink", ""),
+                        }
+                        for p in unmapped
+                    ],
+                },
+                indent=1,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+    except OSError as exc:
+        # Never let a reporting problem stop replies going out.
+        log.warning("could not write waiting.json: %s", exc)
+
     path = os.environ.get("GITHUB_STEP_SUMMARY")
     if not path:
         return
