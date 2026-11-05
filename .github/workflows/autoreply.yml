@@ -21,6 +21,8 @@ jobs:
     if: github.event.schedule != '0 4 1 * *'
     runs-on: ubuntu-latest
     timeout-minutes: 350
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -34,7 +36,27 @@ jobs:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           # Set this repository variable to 1 to watch it run without sending.
           THREADS_DRY_RUN: ${{ vars.THREADS_DRY_RUN }}
-        run: for i in $(seq 1 22); do true > $GITHUB_STEP_SUMMARY; python autoreply.py; if test $i -lt 22; then sleep 900; fi; done
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in $(seq 1 22); do
+            # Pick up anything committed since this run started, so a mapping
+            # added to config.json goes live on the next sweep instead of
+            # waiting for the next run to check the repository out again.
+            git fetch --quiet --unshallow origin main 2>/dev/null || git fetch --quiet origin main
+            git reset --hard --quiet FETCH_HEAD
+            true > $GITHUB_STEP_SUMMARY
+            python autoreply.py
+            # Publish the waiting list straight away. The run summary only
+            # becomes readable once the whole run has finished, hours later,
+            # which is far too late for the mapping task.
+            git add waiting.json
+            if ! git diff --cached --quiet -- waiting.json; then
+              git commit -q -m "Reels waiting for a mapping [skip ci]"
+              git push -q origin HEAD:main || true
+            fi
+            if test $i -lt 22; then sleep 900; fi
+          done
 
   # Keeps the 60-day token alive. Only fires on the monthly cron above.
   refresh:
