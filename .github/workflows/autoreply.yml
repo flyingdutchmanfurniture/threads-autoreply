@@ -44,15 +44,16 @@ jobs:
             # added to config.json goes live on the next sweep instead of
             # waiting for the next run to check the repository out again.
             git fetch --quiet --unshallow origin main 2>/dev/null || git fetch --quiet origin main
-            git reset --hard --quiet FETCH_HEAD
+            git reset --hard --quiet FETCH_HEAD || true
             true > $GITHUB_STEP_SUMMARY
             python autoreply.py
             # Publish the waiting list straight away. The run summary only
             # becomes readable once the whole run has finished, hours later,
             # which is far too late for the mapping task.
-            git add waiting.json
-            if ! git diff --cached --quiet -- waiting.json; then
-              git commit -q -m "Reels waiting for a mapping [skip ci]"
+            # -e is on in Actions, so every line here must be allowed to fail.
+            git add waiting.json 2>/dev/null || true
+            if [ -f waiting.json ] && ! git diff --cached --quiet -- waiting.json; then
+              git commit -q -m "Reels waiting for a mapping [skip ci]" || true
               git push -q origin HEAD:main || true
             fi
             if test $i -lt 22; then sleep 900; fi
