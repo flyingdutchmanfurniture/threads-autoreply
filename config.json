@@ -5,6 +5,7 @@
   "pilot_post_ids": [],
   "_ignore_note": "Reposts and anything else that should never be replied to or listed as waiting for a mapping. A repost carries its own Threads id but no caption of its own, and its permalink points at the original author's post, so there is nothing here to map.",
   "ignore_post_ids": [
+    "17919706698526177",
     "18435638248198455"
   ],
   "posts_to_check": 15,
