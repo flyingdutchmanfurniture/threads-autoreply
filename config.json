@@ -10,9 +10,13 @@
   ],
   "posts_to_check": 15,
   "reply_template": "Here you go: {link}",
-  "_threads_reply_note": "How a LinkDM message becomes a Threads reply. LinkDM allows 900 characters; Threads allows 500 and counts every URL in full. So the message is cut, never truncated. Keep: the thing the reel promised (the free download, or the product link if there is no download), then the guide, and nothing after it - Julia asked on 19 Sep 2026 to stop signing off with \u0027See you in the garage\u0027 and her name, so replies end on the last link. Drop: the bare stan.store profile, the lnk.bio hub, and the 1:1 finish-plan link - Julia decided 19 Sep 2026 to keep Threads replies to the same two-link shape as the approved grit reply, even when there is room to spare, so there is one obvious click. Swap any long URL for its short form in 'short_links'. A PDF attached in LinkDM cannot be sent on Threads at all, so the link has to carry the whole job.",
+  "_threads_reply_note": "How a LinkDM message becomes a Threads reply. LinkDM allows 900 characters; Threads allows 500 and counts every URL in full. So the message is cut, never truncated. Keep: the thing the reel promised (the free download, or the product link if there is no download), then the guide, then any link in '_keep_links' that the DM carries, and nothing after that - Julia asked on 19 Sep 2026 to stop signing off with 'See you in the garage' and her name, so replies end on the last link. Drop: the bare stan.store profile, the lnk.bio hub, and the 1:1 finish-plan link - Julia decided 19 Sep 2026 to keep Threads replies short, even when there is room to spare, so there are few obvious clicks. Swap any long URL for its short form in 'short_links'. A long URL in none of 'short_links', '_keep_links' or '_drop_links' is a new offer whose wording she has not seen: show her the reel and the proposed reply and ask before committing. A PDF attached in LinkDM cannot be sent on Threads at all, so the link has to carry the whole job.",
   "short_links": {
     "https://stan.store/flyingdutchmanfurniture/p/a-practical-guide-to-furniture-refinishing-pdf": "https://tinyurl.com/FDFGuide"
+  },
+  "_keep_links": {
+    "_note": "Julia approved her own tools page on 24 Nov 2026: include it as the last link whenever the LinkDM DM carries it, and do not ask her about it again. Her DM labels it 'All my furniture flipping guides, ebooks, and 1:1 consultations', but the page itself leads with discount codes, free downloads and her socials, so the shorter label below is what goes out.",
+    "https://tools.flyingdutchmanfurniture.com": "All my tools and resources:"
   },
   "_drop_links": [
     "https://stan.store/flyingdutchmanfurniture",
