@@ -4,6 +4,7 @@
   "_pilot": "Empty, so every reel that has a mapping is worked on. While pilot_post_ids has anything in it, ONLY those posts are touched - put an id back in it to test on one reel.",
   "pilot_post_ids": [],
   "_ignore_note": "Reposts and anything else that should never be replied to or listed as waiting for a mapping. A repost carries its own Threads id but no caption of its own, and its permalink points at the original author's post, so there is nothing here to map.",
+  "_ignore_rule": "Julia decided 26 Nov 2026: a waiting post may be added to ignore_post_ids automatically, with no message to her, when BOTH are true - its caption carries no keyword ask, AND it clearly is not one of her refinishing offer reels (a quotes carousel, a tag-a-friend or engagement post, a credits roundup, a repost). Both conditions are required. Her Threads captions routinely drop the keyword on real offer reels - the STRIP reel's Threads caption is 'I used to think I hated stripping furniture' - so a missing keyword on its own is never enough, and that reel still gets matched in LinkDM and mapped as usual. A LinkDM automation can even sit on one of these non-offer posts: the 25 Nov 2026 quotes carousel carried the WOOD automation with zero sends, and that still did not make it an offer reel. If a post looks like a real offer reel but something about its automation seems wrong, skip it and tell her instead of ignoring it.",
   "ignore_post_ids": [
     "17919706698526177",
     "18435638248198455",
